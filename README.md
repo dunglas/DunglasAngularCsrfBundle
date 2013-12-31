@@ -14,7 +14,7 @@ Subsequent XHR requests made by AngularJS will provide a special HTTP header con
 
 To prevent CSRF attacks, the server-side application must check that the header's value match the cookie's value.
 
-This bundle provides a (Symfony's Event Listener)[http://symfony.com/doc/current/cookbook/service_container/event_listener.html] that set the cookie and another one that checks the HTTP header to block CSRF attacks.
+This bundle provides a [Symfony's Event Listener](http://symfony.com/doc/current/cookbook/service_container/event_listener.html) that set the cookie and another one that checks the HTTP header to block CSRF attacks.
 Thanks to DunglasAngularCsrfBundle, you get CSRF security without modifying your code base.
 
 This bundle works fine with [FOSRestBundle](https://github.com/FriendsOfSymfony/FOSRestBundle).
