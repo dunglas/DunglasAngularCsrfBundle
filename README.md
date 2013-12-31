@@ -3,6 +3,9 @@
 This [Symfony 2](http://symfony.com) bundle provides automatic [Cross Site Request Forgery](http://en.wikipedia.org/wiki/Cross-site_request_forgery) (CSRF or XSRF) protection for client-side [AngularJS](http://angularjs.org/) applications.
 It can also be used to secure apps using jQuery or raw JavaScript issuing [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest).
 
+[![Build Status](https://travis-ci.org/dunglas/DunglasAngularCsrfBundle.png?branch=master)](https://travis-ci.org/dunglas/DunglasAngularCsrfBundle)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/4a1e438f-038e-4cd7-ab6e-8849c4586a08/mini.png)](https://insight.sensiolabs.com/projects/4a1e438f-038e-4cd7-ab6e-8849c4586a08)
+
 ## How it works
 
 AngularJS' `ng.$http` service has [a built-in CSRF protection system](http://docs.angularjs.org/api/ng.$http#description_security-considerations_cross-site-request-forgery-protection).
