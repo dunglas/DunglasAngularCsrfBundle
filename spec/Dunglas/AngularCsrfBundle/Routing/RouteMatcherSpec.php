@@ -10,7 +10,6 @@
 namespace spec\Dunglas\AngularCsrfBundle\Routing;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
