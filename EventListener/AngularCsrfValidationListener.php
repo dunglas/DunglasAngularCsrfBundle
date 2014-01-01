@@ -10,6 +10,7 @@
 namespace Dunglas\AngularCsrfBundle\EventListener;
 
 use Dunglas\AngularCsrfBundle\Csrf\AngularCsrfTokenManager;
+use Dunglas\AngularCsrfBundle\Routing\RouteMatcherInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
@@ -26,9 +27,13 @@ class AngularCsrfValidationListener
      */
     protected $angularCsrfTokenManager;
     /**
-     * @var string[]
+     * @var RouteMatcherInterface
      */
-    protected $paths;
+    protected $routeMatcher;
+    /**
+     * @var array
+     */
+    protected $routes;
     /**
      * @var string
      */
@@ -36,13 +41,20 @@ class AngularCsrfValidationListener
 
     /**
      * @param AngularCsrfTokenManager $angularCsrfTokenManager
-     * @param string[]                $paths
+     * @param RouteMatcherInterface   $routeMatcher
+     * @param array                   $routes
      * @param string                  $headerName
      */
-    public function __construct(AngularCsrfTokenManager $angularCsrfTokenManager, array $paths, $headerName)
+    public function __construct(
+        AngularCsrfTokenManager $angularCsrfTokenManager,
+        RouteMatcherInterface $routeMatcher,
+        array $routes,
+        $headerName
+    )
     {
         $this->angularCsrfTokenManager = $angularCsrfTokenManager;
-        $this->paths = $paths;
+        $this->routeMatcher = $routeMatcher;
+        $this->routes = $routes;
         $this->headerName = $headerName;
     }
 
@@ -54,21 +66,11 @@ class AngularCsrfValidationListener
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
-            return;
-        }
-
-        $pathInfo = $event->getRequest()->getPathInfo();
-        $secured = false;
-
-        foreach ($this->paths as $path) {
-            if (preg_match(sprintf('#%s#', $path), $pathInfo)) {
-                $secured = true;
-                break;
-            }
-        }
-
-        if (!$secured) {
+        if (
+            HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()
+            ||
+            !$this->routeMatcher->match($event->getRequest(), $this->routes)
+        ) {
             return;
         }
 

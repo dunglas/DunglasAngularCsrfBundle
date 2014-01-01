@@ -6,31 +6,38 @@
 
     <parameters>
         <parameter key="dunglas_angular_csrf.token_manager.class">Dunglas\AngularCsrfBundle\Csrf\AngularCsrfTokenManager</parameter>
+        <parameter key="dunglas_angular_csrf.route_matcher.class">Dunglas\AngularCsrfBundle\Routing\RouteMatcher</parameter>
         <parameter key="dunglas_angular_csrf.validation_listener.class">Dunglas\AngularCsrfBundle\EventListener\AngularCsrfValidationListener</parameter>
         <parameter key="dunglas_angular_csrf.cookie_listener.class">Dunglas\AngularCsrfBundle\EventListener\AngularCsrfCookieListener</parameter>
     </parameters>
 
     <services>
-        <service id="dunglas_angular_csrf.token_manager" class="%dunglas_angular_csrf.token_manager.class%">
+        <service id="dunglas_angular_csrf.token_manager" class="%dunglas_angular_csrf.token_manager.class%" public="false">
             <argument type="service" id="security.csrf.token_manager" />
             <argument>%dunglas_angular_csrf.token.id%</argument>
         </service>
 
+        <service id="dunglas_angular_csrf.route_matcher" class="%dunglas_angular_csrf.route_matcher.class%" public="false" />
+
         <service id="dunglas_angular_csrf.validation_listener" class="%dunglas_angular_csrf.validation_listener.class%">
             <argument type="service" id="dunglas_angular_csrf.token_manager" />
+            <argument type="service" id="dunglas_angular_csrf.route_matcher" />
             <argument>%dunglas_angular_csrf.secure%</argument>
             <argument>%dunglas_angular_csrf.header.name%</argument>
+
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
         </service>
 
         <service id="dunglas_angular_csrf.cookie_listener" class="%dunglas_angular_csrf.cookie_listener.class%">
             <argument type="service" id="dunglas_angular_csrf.token_manager" />
+            <argument type="service" id="dunglas_angular_csrf.route_matcher" />
             <argument>%dunglas_angular_csrf.cookie.set_on%</argument>
             <argument>%dunglas_angular_csrf.cookie.name%</argument>
             <argument>%dunglas_angular_csrf.cookie.expire%</argument>
             <argument>%dunglas_angular_csrf.cookie.path%</argument>
             <argument>%dunglas_angular_csrf.cookie.domain%</argument>
             <argument>%dunglas_angular_csrf.cookie.secure%</argument>
+
             <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" />
         </service>
     </services>

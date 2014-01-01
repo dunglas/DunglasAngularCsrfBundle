@@ -1,5 +1,12 @@
 <?php
 
+/*
+ * (c) Kévin Dunglas <dunglas@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace spec\Dunglas\AngularCsrfBundle\Csrf;
 
 use PhpSpec\ObjectBehavior;
@@ -7,6 +14,9 @@ use Prophecy\Argument;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
 
+/**
+ * @author Kévin Dunglas <dunglas@gmail.com>
+ */
 class AngularCsrfTokenManagerSpec extends ObjectBehavior
 {
     const ID = 'spec';

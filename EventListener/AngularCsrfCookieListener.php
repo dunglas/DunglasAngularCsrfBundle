@@ -10,6 +10,7 @@
 namespace Dunglas\AngularCsrfBundle\EventListener;
 
 use Dunglas\AngularCsrfBundle\Csrf\AngularCsrfTokenManager;
+use Dunglas\AngularCsrfBundle\Routing\RouteMatcherInterface;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -28,7 +29,7 @@ class AngularCsrfCookieListener
     /**
      * @var array
      */
-    protected $paths;
+    protected $routes;
     /**
      * @var string
      */
@@ -52,24 +53,28 @@ class AngularCsrfCookieListener
 
     /**
      * @param AngularCsrfTokenManager $angularCsrfTokenManager
-     * @param array                   $paths
+     * @param RouteMatcherInterface   $routeMatcher
+     * @param array                   $routes
      * @param string                  $cookieName
      * @param int                     $cookieExpire
      * @param string                  $cookiePath
      * @param string                  $cookieDomain
      * @param bool                    $cookieSecure
      */
-    public function __construct(AngularCsrfTokenManager $angularCsrfTokenManager,
-                                array $paths,
-                                $cookieName,
-                                $cookieExpire,
-                                $cookiePath,
-                                $cookieDomain,
-                                $cookieSecure
+    public function __construct(
+        AngularCsrfTokenManager $angularCsrfTokenManager,
+        RouteMatcherInterface $routeMatcher,
+        array $routes,
+        $cookieName,
+        $cookieExpire,
+        $cookiePath,
+        $cookieDomain,
+        $cookieSecure
     )
     {
         $this->angularCsrfTokenManager = $angularCsrfTokenManager;
-        $this->paths = $paths;
+        $this->routeMatcher = $routeMatcher;
+        $this->routes = $routes;
         $this->cookieName = $cookieName;
         $this->cookieExpire = $cookieExpire;
         $this->cookiePath = $cookiePath;
@@ -84,24 +89,13 @@ class AngularCsrfCookieListener
      */
     public function onKernelResponse(FilterResponseEvent $event)
     {
-        if (HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()) {
+        if (
+            HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()
+            ||
+            !$this->routeMatcher->match($event->getRequest(), $this->routes)
+        ) {
             return;
         }
-
-        $pathInfo = $event->getRequest()->getPathInfo();
-        $cookie = false;
-
-        foreach ($this->paths as $path) {
-            if (preg_match(sprintf('#%s#', $path), $pathInfo)) {
-                $cookie = true;
-                break;
-            }
-        }
-
-        if (!$cookie) {
-            return;
-        }
-
         $event->getResponse()->headers->setCookie(new Cookie(
             $this->cookieName,
             $this->angularCsrfTokenManager->getToken()->getValue(),

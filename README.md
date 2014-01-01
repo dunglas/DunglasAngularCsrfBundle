@@ -49,10 +49,12 @@ dunglas_angular_csrf:
   # Collection of patterns where to set the cookie
   cookie:
       set_on:
-          - ^/$
+          - { path: ^/$ }
+          - { route: ^app_, methods: [GET, HEAD] }
   # Collection of patterns to secure
   secure:
-    - ^/api
+    - { path: ^/api, methods: [POST, PUT, PATCH, LINK] }
+    - { route: ^api_v2_ }
 ```
 
 Your Symfony/AngularJS app is now secured.
@@ -80,10 +82,10 @@ dunglas_angular_csrf:
       secure: false
       # Patterns of URLs to set the cookie
       set_on:
-          - ^/$
+          - { path: "^/url-pattern", route: "^route_name_pattern$", methods: [GET, POST] }
   # Patterns of URLs to check for a valid CSRF token
   secure:
-    - ^/api
+      - { path: "^/url-pattern", route: "^route_name_pattern$", methods: [GET, POST] }
 ```
 
 ## Credits
