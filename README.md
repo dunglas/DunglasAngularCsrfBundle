@@ -59,6 +59,10 @@ dunglas_angular_csrf:
 
 Your Symfony/AngularJS app is now secured.
 
+## Examples
+
+* [DunglasTodoMVCBundle](https://github.com/dunglas/DunglasTodoMVCBundle): an implementation of the TodoMVC app using Symfony, Backbone.js and Chaplin.js
+
 ## Full configuration
 
 ```yaml
