@@ -49,7 +49,7 @@ class Configuration implements ConfigurationInterface
                         ->integerNode('expire')->cannotBeEmpty()->defaultValue(0)->end()
                         ->scalarNode('path')->cannotBeEmpty()->defaultValue('/')->end()
                         ->scalarNode('domain')->cannotBeEmpty()->defaultValue(null)->end()
-                        ->booleanNode('secure')->cannotBeEmpty()->defaultFalse()->end()
+                        ->booleanNode('secure')->defaultFalse()->end()
                         ->arrayNode('set_on')
                             ->prototype('array')
                                 ->children()
