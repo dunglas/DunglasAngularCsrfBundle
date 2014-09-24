@@ -14,3 +14,4 @@ script: vendor/bin/phpspec run
 matrix:
   allow_failures:
     - php: hhvm
+

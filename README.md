@@ -95,3 +95,4 @@ dunglas_angular_csrf:
 ## Credits
 
 This bundle has been written by [Kévin Dunglas](http://dunglas.fr).
+
