@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * (c) Kévin Dunglas <dunglas@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+namespace Dunglas\AngularCsrfBundle\Features\Context\Fixtures;
+
+use Dunglas\AngularCsrfBundle\DunglasAngularCsrfBundle;
+use Dunglas\AngularCsrfBundle\Features\Context\Fixtures\TestBundle\TestBundle;
+use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\TwigBundle\TwigBundle;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\HttpKernel\Kernel;
+
+class TestKernel extends Kernel
+{
+    private $config;
+
+    public function __construct($config = 'default.yml')
+    {
+        parent::__construct('test', true);
+
+        $fs = new Filesystem();
+        if (!$fs->isAbsolutePath($config)) {
+            $config = __DIR__.'/config/'.$config;
+        }
+
+        if (!file_exists($config)) {
+            throw new \RuntimeException(sprintf('The config file "%s" does not exist.', $config));
+        }
+
+        $this->config = $config;
+    }
+
+    public function registerBundles()
+    {
+        return [
+            new FrameworkBundle(),
+            new SensioFrameworkExtraBundle(),
+            new TestBundle(),
+            new DunglasAngularCsrfBundle(),
+            new TwigBundle(),
+        ];
+    }
+
+    public function registerContainerConfiguration(LoaderInterface $loader)
+    {
+        $loader->load($this->config);
+    }
+
+    public function getCacheDir()
+    {
+        return sys_get_temp_dir().'/DunglasAngularCsrfBundle/cache';
+    }
+
+    public function getLogDir()
+    {
+        return sys_get_temp_dir().'/DunglasAngularCsrfBundle/logs';
+    }
+}
+

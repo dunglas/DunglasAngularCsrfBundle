@@ -65,7 +65,7 @@ class DunglasAngularCsrfExtensionSpec extends ObjectBehavior
         $container->setDefinition('dunglas_angular_csrf.route_matcher', Argument::type('Symfony\Component\DependencyInjection\Definition'))->shouldBeCalled();
         $container->setDefinition('dunglas_angular_csrf.validation_listener', Argument::type('Symfony\Component\DependencyInjection\Definition'))->shouldBeCalled();
         $container->setDefinition('dunglas_angular_csrf.cookie_listener', Argument::type('Symfony\Component\DependencyInjection\Definition'))->shouldBeCalled();
-
+        $container->setDefinition('dunglas_angular_csrf.form.extension.disable_csrf', Argument::type('Symfony\Component\DependencyInjection\Definition'))->shouldBeCalled();
 
         $this->load($configs, $container);
     }
