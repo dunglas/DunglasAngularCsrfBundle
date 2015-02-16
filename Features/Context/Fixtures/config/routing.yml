@@ -1,0 +1,12 @@
+test_post:
+    pattern:   /resource
+    defaults: { _controller: TestBundle:Test:create, _validate_csrf: true }
+    requirements:
+        _method: POST
+
+test_csrf_protected_form:
+    pattern:   /protected-resource
+    defaults: { _controller: TestBundle:Test:csrfProtected, _validate_csrf: true }
+    requirements:
+        _method: POST
+

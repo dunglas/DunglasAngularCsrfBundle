@@ -9,6 +9,7 @@
         <parameter key="dunglas_angular_csrf.route_matcher.class">Dunglas\AngularCsrfBundle\Routing\RouteMatcher</parameter>
         <parameter key="dunglas_angular_csrf.validation_listener.class">Dunglas\AngularCsrfBundle\EventListener\AngularCsrfValidationListener</parameter>
         <parameter key="dunglas_angular_csrf.cookie_listener.class">Dunglas\AngularCsrfBundle\EventListener\AngularCsrfCookieListener</parameter>
+        <parameter key="dunglas_angular_csrf.form.extension.disable_csrf.class">Dunglas\AngularCsrfBundle\Form\Extension\DisableCsrfExtension</parameter>
     </parameters>
 
     <services>
@@ -26,6 +27,16 @@
             <argument>%dunglas_angular_csrf.header.name%</argument>
 
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
+        </service>
+
+        <service id="dunglas_angular_csrf.form.extension.disable_csrf" class="%dunglas_angular_csrf.form.extension.disable_csrf.class%">
+            <argument type="service" id="dunglas_angular_csrf.token_manager" />
+            <argument type="service" id="dunglas_angular_csrf.route_matcher" />
+            <argument type="service" id="request_stack" />
+            <argument>%dunglas_angular_csrf.secure%</argument>
+            <argument>%dunglas_angular_csrf.header.name%</argument>
+
+            <tag name="form.type_extension" alias="form" />
         </service>
 
         <service id="dunglas_angular_csrf.cookie_listener" class="%dunglas_angular_csrf.cookie_listener.class%">

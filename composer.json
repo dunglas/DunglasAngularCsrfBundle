@@ -20,10 +20,17 @@
         "symfony/security-csrf": "~2.4"
     },
     "require-dev": {
-        "phpspec/phpspec": "2.0.*@dev"
+        "phpspec/phpspec": "2.0.*@dev",
+        "behat/behat": "~3.0",
+        "sensio/framework-extra-bundle": "~3.0",
+        "symfony/form": "~2.4",
+        "symfony/validator": "~2.4",
+        "symfony/twig-bundle" : "~2.4"
     },
     "autoload": {
-        "psr-0": { "Dunglas\\AngularCsrfBundle": "" }
+        "psr-0": {
+            "Dunglas\\AngularCsrfBundle": ""
+        }
     },
     "target-dir": "Dunglas/AngularCsrfBundle",
     "extra": {
