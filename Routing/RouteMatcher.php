@@ -39,11 +39,10 @@ class RouteMatcher implements RouteMatcherInterface
             if (
                 $methodMatch
                 &&
-                (empty ($route['path']) || preg_match(sprintf('#%s#', $route['path']), $request->getPathInfo()))
+                (empty($route['path']) || preg_match(sprintf('#%s#', $route['path']), $request->getPathInfo()))
                 &&
-                (empty ($route['route']) || preg_match(sprintf('#%s#', $route['route']), $request->get('_route')))
-            )
-            {
+                (empty($route['route']) || preg_match(sprintf('#%s#', $route['route']), $request->get('_route')))
+            ) {
                 return true;
             }
         }

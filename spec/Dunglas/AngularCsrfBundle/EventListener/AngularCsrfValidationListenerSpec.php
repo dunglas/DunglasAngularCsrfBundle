@@ -39,8 +39,7 @@ class AngularCsrfValidationListenerSpec extends ObjectBehavior
         Request $unsecureRequest,
         HeaderBag $validHeaders,
         HeaderBag $invalidHeaders
-    )
-    {
+    ) {
         $tokenManager->isTokenValid(self::VALID_TOKEN)->willReturn(true);
         $tokenManager->isTokenValid(self::INVALID_TOKEN)->willReturn(false);
 

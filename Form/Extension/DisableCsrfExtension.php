@@ -6,7 +6,6 @@
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
-
 namespace Dunglas\AngularCsrfBundle\Form\Extension;
 
 use Dunglas\AngularCsrfBundle\Csrf\AngularCsrfTokenManager;
@@ -59,8 +58,7 @@ class DisableCsrfExtension extends AbstractTypeExtension
         RequestStack $requestStack,
         array $routes,
         $headerName
-    )
-    {
+    ) {
         $this->angularCsrfTokenManager = $angularCsrfTokenManager;
         $this->routeMatcher = $routeMatcher;
         $this->routes = $routes;
@@ -83,7 +81,7 @@ class DisableCsrfExtension extends AbstractTypeExtension
 
         if ($this->angularCsrfTokenManager->isTokenValid($value)) {
             $resolver->setDefaults(array(
-                'csrf_protection' => false
+                'csrf_protection' => false,
             ));
         }
     }
@@ -93,4 +91,3 @@ class DisableCsrfExtension extends AbstractTypeExtension
         return 'form';
     }
 }
-

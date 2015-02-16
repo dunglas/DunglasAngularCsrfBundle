@@ -42,7 +42,7 @@ class AngularCsrfTokenManager
      * Gets the CSRF token
      *
      * @return CsrfToken
-     *                   @see CsrfTokenManagerInterface::getToken()
+     * @see CsrfTokenManagerInterface::getToken()
      */
     public function getToken()
     {
@@ -53,7 +53,7 @@ class AngularCsrfTokenManager
      * Refreshes the CSRF token
      *
      * @return CsrfToken
-     *                   @see CsrfTokenManagerInterface::refreshToken()
+     * @see CsrfTokenManagerInterface::refreshToken()
      */
     public function refreshToken()
     {
@@ -64,7 +64,7 @@ class AngularCsrfTokenManager
      * Removes the CSRF Token
      *
      * @return null|string
-     *                     @see CsrfTokenManagerInterface::removeToken()
+     * @see CsrfTokenManagerInterface::removeToken()
      */
     public function removeToken()
     {
@@ -76,7 +76,7 @@ class AngularCsrfTokenManager
      *
      * @param $value The CSRF token value to test
      * @return bool
-     *              @see CsrfTokenManagerInterface::isTokenValid()
+     * @see CsrfTokenManagerInterface::isTokenValid()
      */
     public function isTokenValid($value)
     {

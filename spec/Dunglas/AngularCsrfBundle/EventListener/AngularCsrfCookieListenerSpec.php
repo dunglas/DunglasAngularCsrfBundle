@@ -42,8 +42,7 @@ class AngularCsrfCookieListenerSpec extends ObjectBehavior
         Request $secureRequest,
         Request $unsecureRequest,
         CsrfToken $token
-    )
-    {
+    ) {
         $token->getValue()->willReturn(self::TOKEN_VALUE);
         $tokenManager->getToken()->willReturn($token);
 
@@ -74,8 +73,7 @@ class AngularCsrfCookieListenerSpec extends ObjectBehavior
         FilterResponseEvent $event,
         Response $response,
         ResponseHeaderBag $headers
-    )
-    {
+    ) {
         $headers->setCookie(Argument::type('Symfony\Component\HttpFoundation\Cookie'));
         $response->headers = $headers;
 

@@ -70,8 +70,7 @@ class AngularCsrfCookieListener
         $cookiePath,
         $cookieDomain,
         $cookieSecure
-    )
-    {
+    ) {
         $this->angularCsrfTokenManager = $angularCsrfTokenManager;
         $this->routeMatcher = $routeMatcher;
         $this->routes = $routes;

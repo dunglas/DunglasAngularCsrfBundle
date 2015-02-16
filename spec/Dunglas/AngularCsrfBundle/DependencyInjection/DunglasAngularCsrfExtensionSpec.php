@@ -26,27 +26,27 @@ class DunglasAngularCsrfExtensionSpec extends ObjectBehavior
 
     public function it_loads(ContainerBuilder $container, ParameterBagInterface $parameterBag)
     {
-        $configs = array (
-            'dunglas_angular_csrf' => array (
-                'token' => array ('id' => 'myid'),
-                'cookie' => array (
+        $configs = array(
+            'dunglas_angular_csrf' => array(
+                'token' => array('id' => 'myid'),
+                'cookie' => array(
                     'name' => 'cookiename',
                     'expire' => 1312,
                     'path' => '/path',
                     'domain' => 'example.com',
                     'secure' => true,
-                    'set_on' => array (
-                        array ('path' =>'^/city', 'route' => false, 'methods' => array ()),
-                        array ('path' => false, 'route' => '^api_', 'methods' => array ('PUT', 'POST'))
-                    )
+                    'set_on' => array(
+                        array('path' => '^/city', 'route' => false, 'methods' => array()),
+                        array('path' => false, 'route' => '^api_', 'methods' => array('PUT', 'POST')),
+                    ),
                 ),
-                'header' => array ('name' => 'myheader'),
-                'secure' => array (
-                    array ('path' => '^/lille', 'route' => false, 'methods' => array ()),
-                    array ('path' => false, 'route' => '^houdain$', 'methods' => array ('GET', 'PATCH')),
-                    array ('path' => '/bruay', 'route' => false, 'methods' => array ('HEAD', 'LINK'))
-                )
-            )
+                'header' => array('name' => 'myheader'),
+                'secure' => array(
+                    array('path' => '^/lille', 'route' => false, 'methods' => array()),
+                    array('path' => false, 'route' => '^houdain$', 'methods' => array('GET', 'PATCH')),
+                    array('path' => '/bruay', 'route' => false, 'methods' => array('HEAD', 'LINK')),
+                ),
+            ),
         );
 
         $container->getParameterBag()->willReturn($parameterBag)->shouldBeCalled();

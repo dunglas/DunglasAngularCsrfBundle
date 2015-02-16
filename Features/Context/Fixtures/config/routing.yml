@@ -9,4 +9,3 @@ test_csrf_protected_form:
     defaults: { _controller: TestBundle:Test:csrfProtected, _validate_csrf: true }
     requirements:
         _method: POST
-

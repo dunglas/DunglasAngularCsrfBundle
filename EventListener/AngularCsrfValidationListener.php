@@ -50,8 +50,7 @@ class AngularCsrfValidationListener
         RouteMatcherInterface $routeMatcher,
         array $routes,
         $headerName
-    )
-    {
+    ) {
         $this->angularCsrfTokenManager = $angularCsrfTokenManager;
         $this->routeMatcher = $routeMatcher;
         $this->routes = $routes;

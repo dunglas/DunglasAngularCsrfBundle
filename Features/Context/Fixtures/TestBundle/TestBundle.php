@@ -6,7 +6,6 @@
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
-
 namespace Dunglas\AngularCsrfBundle\Features\Context\Fixtures\TestBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -19,4 +18,3 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 class TestBundle extends Bundle
 {
 }
-

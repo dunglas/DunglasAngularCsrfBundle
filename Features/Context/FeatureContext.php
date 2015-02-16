@@ -6,7 +6,6 @@
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
-
 namespace Dunglas\AngularCsrfBundle\Features\Context;
 
 use Behat\Behat\Context\SnippetAcceptingContext;
@@ -32,7 +31,7 @@ class FeatureContext implements SnippetAcceptingContext
     {
         $request = Request::create($path, 'POST');
         $request->headers->add(array(
-            'X-XSRF-TOKEN' => $this->app->getContainer()->get('dunglas_angular_csrf.token_manager')->getToken()->getValue()
+            'X-XSRF-TOKEN' => $this->app->getContainer()->get('dunglas_angular_csrf.token_manager')->getToken()->getValue(),
         ));
         $this->lastResponse = $this->app->handle($request);
     }
@@ -44,7 +43,7 @@ class FeatureContext implements SnippetAcceptingContext
     {
         $request = Request::create($path, 'POST');
         $request->headers->add(array(
-            'X-XSRF-TOKEN' => 'invalid_csrf_token'
+            'X-XSRF-TOKEN' => 'invalid_csrf_token',
         ));
 
         $this->lastResponse = $this->app->handle($request);
@@ -70,4 +69,3 @@ class FeatureContext implements SnippetAcceptingContext
         }
     }
 }
-
