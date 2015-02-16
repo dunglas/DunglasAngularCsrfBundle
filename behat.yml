@@ -1,9 +1,6 @@
 default:
-    autoload:
-        '': %paths.base%/features/bootstrsap
     suites:
         default:
-            paths:    [ %paths.base%/features ]
             contexts:
                 - Dunglas\AngularCsrfBundle\Features\Context\FeatureContext
 
