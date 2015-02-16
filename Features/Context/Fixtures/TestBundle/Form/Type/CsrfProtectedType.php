@@ -43,3 +43,4 @@ class CsrfProtectedType extends AbstractType
         return '';
     }
 }
+
