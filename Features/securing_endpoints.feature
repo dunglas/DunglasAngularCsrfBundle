@@ -19,4 +19,3 @@ Feature: CSRF protection
   Scenario: The form csrf token is not disabled in favor of header one if its invalid
     Given I send POST request to "/protected-resource" with invalid csrf header
     Then the response code should be 403
-

@@ -1,22 +1,27 @@
 <?php
 
-/**
+/*
  * (c) Kévin Dunglas <dunglas@gmail.com>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
+
 namespace Dunglas\AngularCsrfBundle\Features\Context;
 
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Dunglas\AngularCsrfBundle\Features\Context\Fixtures\TestKernel;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * FeatureContext.
+ *
+ * @author Michal Dabrowski <dabrowski@brillante.pl>
+ */
 class FeatureContext implements SnippetAcceptingContext
 {
     private $app;
     private $lastResponse;
-    private $lastThrowException;
 
     public function __construct()
     {
@@ -65,7 +70,7 @@ class FeatureContext implements SnippetAcceptingContext
     public function iShouldSee($content)
     {
         if ($content !== $this->lastResponse->getContent()) {
-            throw new \RuntimeException('Request wasnt ok');
+            throw new \RuntimeException('Request was\'nt ok');
         }
     }
 }

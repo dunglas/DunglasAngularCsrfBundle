@@ -11,5 +11,4 @@ before_script:
 
 script:
     - vendor/bin/phpspec run
-    - vendor/behat/behat/bin/behat --verbose
-
+    - vendor/bin/behat 

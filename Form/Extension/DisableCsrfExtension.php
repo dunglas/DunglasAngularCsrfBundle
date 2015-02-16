@@ -6,6 +6,7 @@
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
+
 namespace Dunglas\AngularCsrfBundle\Form\Extension;
 
 use Dunglas\AngularCsrfBundle\Csrf\AngularCsrfTokenManager;
@@ -15,7 +16,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Form extension that disables the given forms' csrf token validation
+ * Form extension that disables the given forms' CSRF token validation
  * in favor of the validation token sent with header.
  * It disables only when header token is valid.
  *
@@ -66,6 +67,9 @@ class DisableCsrfExtension extends AbstractTypeExtension
         $this->requestStack = $requestStack;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $request = $this->requestStack->getCurrentRequest();
@@ -86,6 +90,9 @@ class DisableCsrfExtension extends AbstractTypeExtension
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getExtendedType()
     {
         return 'form';

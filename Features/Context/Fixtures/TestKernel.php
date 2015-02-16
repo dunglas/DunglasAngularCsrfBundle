@@ -1,11 +1,12 @@
 <?php
 
-/**
+/*
  * (c) Kévin Dunglas <dunglas@gmail.com>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
+
 namespace Dunglas\AngularCsrfBundle\Features\Context\Fixtures;
 
 use Dunglas\AngularCsrfBundle\DunglasAngularCsrfBundle;
@@ -17,6 +18,11 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
+/**
+ * Test Kernel.
+ *
+ * @author Michal Dabrowski <dabrowski@brillante.pl>
+ */
 class TestKernel extends Kernel
 {
     private $config;
