@@ -9,6 +9,8 @@
 
 namespace Dunglas\AngularCsrfBundle;
 
+use Dunglas\AngularCsrfBundle\DependencyInjection\CompilerPass\CsrfCompilerPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -16,4 +18,11 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class DunglasAngularCsrfBundle extends Bundle
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new CsrfCompilerPass());
+    }
 }

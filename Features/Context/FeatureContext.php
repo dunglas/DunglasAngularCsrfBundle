@@ -11,6 +11,7 @@ namespace Dunglas\AngularCsrfBundle\Features\Context;
 
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Dunglas\AngularCsrfBundle\Features\Context\Fixtures\TestKernel;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -22,11 +23,13 @@ class FeatureContext implements SnippetAcceptingContext
 {
     private $app;
     private $lastResponse;
+    private $fs;
 
     public function __construct()
     {
         $this->app = new TestKernel();
-        $this->app->boot();
+        $this->fs = new Filesystem();
+        $this->fs->remove($this->app->getCacheDir());
     }
 
     /**
@@ -34,6 +37,7 @@ class FeatureContext implements SnippetAcceptingContext
      */
     public function iSendPostRequestToWithValidCsrfHeader($path)
     {
+        $this->app->boot();
         $request = Request::create($path, 'POST');
         $request->headers->add(array(
             'X-XSRF-TOKEN' => $this->app->getContainer()->get('dunglas_angular_csrf.token_manager')->getToken()->getValue(),
@@ -46,12 +50,25 @@ class FeatureContext implements SnippetAcceptingContext
      */
     public function iSendPostRequestToWithInvalidCsrfHeader($path)
     {
+        $this->app->boot();
         $request = Request::create($path, 'POST');
         $request->headers->add(array(
             'X-XSRF-TOKEN' => 'invalid_csrf_token',
         ));
 
         $this->lastResponse = $this->app->handle($request);
+    }
+
+    /**
+     * @Given I send POST request to :arg1 when csrf protection is disabled
+     */
+    public function iSendPostRequestToWhenCsrfProtectionIsDisabled($path)
+    {
+        $app = new TestKernel('csrf_protection_disabled.yml');
+        $this->fs->remove($app->getCacheDir());
+        $app->boot();
+        $request = Request::create($path, 'POST');
+        $this->lastResponse = $app->handle($request);
     }
 
     /**

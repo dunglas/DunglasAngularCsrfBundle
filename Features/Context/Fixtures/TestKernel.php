@@ -29,6 +29,7 @@ class TestKernel extends Kernel
 
     public function __construct($config = 'default.yml')
     {
+        $this->name = 'app' . uniqid();
         parent::__construct('test', true);
 
         $fs = new Filesystem();
@@ -61,7 +62,7 @@ class TestKernel extends Kernel
 
     public function getCacheDir()
     {
-        return sys_get_temp_dir().'/DunglasAngularCsrfBundle/cache';
+        return sys_get_temp_dir().'/DunglasAngularCsrfBundle/cache/'. $this->name . $this->environment;
     }
 
     public function getLogDir()
