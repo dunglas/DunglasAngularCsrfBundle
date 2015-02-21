@@ -92,6 +92,11 @@ dunglas_angular_csrf:
       - { path: "^/url-pattern", route: "^route_name_pattern$", methods: [GET, POST] }
 ```
 
+## Integration with Symfony2 Form component
+
+If You are using Symfony2 Form component along with DunglasAngularCsrfBundle, there are some basic informations:
+Whenever Your action was under the secured by CSRF bundle route, the form created in that action will be set with default option of disabled csrf. In that case, the DunglasAngularCsrfBundle will only validate the token send by header and ommit the token from the form. 
+
 ## Credits
 
 This bundle has been written by [Kévin Dunglas](http://dunglas.fr).
