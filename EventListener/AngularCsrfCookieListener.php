@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpFoundation\Cookie;
 
 /**
- * Sets a cookie containing the CSRF token
+ * Sets a cookie containing the CSRF token.
  *
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
@@ -82,7 +82,7 @@ class AngularCsrfCookieListener
     }
 
     /**
-     * Sets a cookie to the response containing the CRSF token
+     * Sets a cookie to the response containing the CRSF token.
      *
      * @param FilterResponseEvent $event
      */

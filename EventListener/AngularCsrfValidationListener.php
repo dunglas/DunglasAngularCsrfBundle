@@ -16,7 +16,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
- * Checks the validity of the CSRF token sent by AngularJS
+ * Checks the validity of the CSRF token sent by AngularJS.
  *
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
@@ -58,9 +58,10 @@ class AngularCsrfValidationListener
     }
 
     /**
-     * Handles CSRF token validation
+     * Handles CSRF token validation.
      *
-     * @param  GetResponseEvent          $event
+     * @param GetResponseEvent $event
+     *
      * @throws AccessDeniedHttpException
      */
     public function onKernelRequest(GetResponseEvent $event)

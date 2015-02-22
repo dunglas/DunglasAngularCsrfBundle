@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Test controller used in scenarios
+ * Test controller used in scenarios.
  *
  * @author Michal Dabrowski <dabrowski@brillante.pl>
  */

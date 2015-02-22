@@ -12,17 +12,18 @@ namespace Dunglas\AngularCsrfBundle\Routing;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Routes checker
+ * Routes checker.
  *
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
 interface RouteMatcherInterface
 {
     /**
-     * Checks is the current request match configured routes
+     * Checks is the current request match configured routes.
      *
-     * @param  Request $request
-     * @param  array   $routes
+     * @param Request $request
+     * @param array   $routes
+     *
      * @return bool
      */
     public function match(Request $request, array $routes);

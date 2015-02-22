@@ -13,7 +13,7 @@ use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
 
 /**
- * Angular CSRF token manager
+ * Angular CSRF token manager.
  *
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
@@ -39,7 +39,7 @@ class AngularCsrfTokenManager
     }
 
     /**
-     * Gets the CSRF token
+     * Gets the CSRF token.
      *
      * @return CsrfToken
      *
@@ -51,7 +51,7 @@ class AngularCsrfTokenManager
     }
 
     /**
-     * Refreshes the CSRF token
+     * Refreshes the CSRF token.
      *
      * @return CsrfToken
      *
@@ -63,7 +63,7 @@ class AngularCsrfTokenManager
     }
 
     /**
-     * Removes the CSRF Token
+     * Removes the CSRF Token.
      *
      * @return string|null
      *
@@ -75,7 +75,7 @@ class AngularCsrfTokenManager
     }
 
     /**
-     * Tests if the given token value is valid
+     * Tests if the given token value is valid.
      *
      * @param $value The CSRF token value to test
      *

@@ -12,7 +12,7 @@ namespace Dunglas\AngularCsrfBundle\Routing;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Routes matcher default implementation
+ * Routes matcher default implementation.
  *
  * @author Kévin Dunglas <dunglas@gmail.com>
  */

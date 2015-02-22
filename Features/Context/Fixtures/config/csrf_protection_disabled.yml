@@ -30,4 +30,3 @@ dunglas_angular_csrf:
     secure:
         - { path: ^/resource, methods: [POST, PUT, PATCH, LINK] }
         - { path: ^/protected-resource, methods: [POST, PUT, PATCH, LINK] }
-

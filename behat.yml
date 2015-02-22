@@ -3,4 +3,3 @@ default:
         default:
             contexts:
                 - Dunglas\AngularCsrfBundle\Features\Context\FeatureContext
-

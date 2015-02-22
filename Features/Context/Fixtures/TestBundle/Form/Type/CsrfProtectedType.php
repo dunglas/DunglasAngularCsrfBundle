@@ -13,7 +13,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Test form with enabled CSRF default protection
+ * Test form with enabled CSRF default protection.
  *
  * @author Michal Dabrowski <dabrowski@brillante.pl>
  * @author Kévin Dunglas <dunglas@gmail.com>

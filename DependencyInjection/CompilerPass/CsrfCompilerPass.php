@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 /**
- * Removes csrf listeners when token manager isn't loaded
+ * Removes csrf listeners when token manager isn't loaded.
  *
  * @author Michal Dabrowski <dabrowski@brillante.pl>
  */
@@ -29,4 +29,3 @@ class CsrfCompilerPass implements CompilerPassInterface
         }
     }
 }
-
