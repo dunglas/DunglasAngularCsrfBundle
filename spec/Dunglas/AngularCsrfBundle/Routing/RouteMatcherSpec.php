@@ -40,6 +40,15 @@ class RouteMatcherSpec extends ObjectBehavior
         $this->match($request, array(array('route' => '^kevindunglas$')))->shouldBe(false);
     }
 
+    public function it_should_match_host(Request $request)
+    {
+        $request->getHost()->willReturn('example.com')->shouldBeCalled();
+
+        $this->match($request, array(array('host' => '^example')))->shouldBe(true);
+        $this->match($request, array(array('host' => 'example.com')))->shouldBe(true);
+        $this->match($request, array(array('host' => 'example.co$')))->shouldBe(false);
+    }
+
     public function it_should_match_methods(Request $request)
     {
         $request->getMethod()->willReturn('POST')->shouldBeCalled();
@@ -55,13 +64,16 @@ class RouteMatcherSpec extends ObjectBehavior
         $request->getPathInfo()->willReturn('/flag')->shouldBeCalled();
         $request->get('_route')->willReturn('black')->shouldBeCalled();
         $request->getMethod()->willReturn('LINK')->shouldBeCalled();
+        $request->getHost()->willReturn('example.com')->shouldBeCalled();
 
         $this->match($request, array(array('path' => '^/fl', 'methods' => array('LINK', 'POST'))))->shouldBe(true);
         $this->match($request, array(array('path' => 'flag', 'route' => 'black', 'methods' => array('LINK'))))->shouldBe(true);
         $this->match($request, array(array('route' => '^black$', 'methods' => array('LINK'))))->shouldBe(true);
         $this->match($request, array(array('path' => '/flag', 'route' => '^black')))->shouldBe(true);
+        $this->match($request, array(array('path' => 'flag', 'route' => 'black', 'host' => 'example.com', 'methods' => array('LINK'))))->shouldBe(true);
         $this->match($request, array(array('path' => 'flag', 'route' => 'black', 'methods' => array('POST'))))->shouldBe(false);
         $this->match($request, array(array('path' => 'flag', 'route' => 'red', 'methods' => array('LINK'))))->shouldBe(false);
         $this->match($request, array(array('path' => 'hammer', 'route' => 'black', 'methods' => array('LINK'))))->shouldBe(false);
+        $this->match($request, array(array('path' => 'flag', 'route' => 'black', 'host' => 'example.co$', 'methods' => array('LINK'))))->shouldBe(false);
     }
 }

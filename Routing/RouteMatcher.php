@@ -42,6 +42,8 @@ class RouteMatcher implements RouteMatcherInterface
                 (empty($route['path']) || preg_match(sprintf('#%s#', $route['path']), $request->getPathInfo()))
                 &&
                 (empty($route['route']) || preg_match(sprintf('#%s#', $route['route']), $request->get('_route')))
+                &&
+                (empty($route['host']) || preg_match(sprintf('#%s#', $route['host']), $request->getHost()))
             ) {
                 return true;
             }

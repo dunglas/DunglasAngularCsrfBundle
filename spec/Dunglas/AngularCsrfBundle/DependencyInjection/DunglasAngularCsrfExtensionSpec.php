@@ -36,15 +36,17 @@ class DunglasAngularCsrfExtensionSpec extends ObjectBehavior
                     'domain' => 'example.com',
                     'secure' => true,
                     'set_on' => array(
-                        array('path' => '^/city', 'route' => false, 'methods' => array()),
-                        array('path' => false, 'route' => '^api_', 'methods' => array('PUT', 'POST')),
+                        array('path' => '^/city', 'route' => false, 'host' => false, 'methods' => array()),
+                        array('path' => false, 'route' => '^api_', 'host' => false, 'methods' => array('PUT', 'POST')),
+                        array('path' => false, 'route' => false, 'host' => 'example.com', 'methods' => array()),
                     ),
                 ),
                 'header' => array('name' => 'myheader'),
                 'secure' => array(
-                    array('path' => '^/lille', 'route' => false, 'methods' => array()),
-                    array('path' => false, 'route' => '^houdain$', 'methods' => array('GET', 'PATCH')),
-                    array('path' => '/bruay', 'route' => false, 'methods' => array('HEAD', 'LINK')),
+                    array('path' => '^/lille', 'route' => false, 'host' => false, 'methods' => array()),
+                    array('path' => false, 'route' => '^houdain$', 'host' => false, 'methods' => array('GET', 'PATCH')),
+                    array('path' => '/bruay', 'route' => false, 'host' => false, 'methods' => array('HEAD', 'LINK')),
+                    array('path' => false, 'route' => false, 'host' => 'example.com', 'methods' => array()),
                 ),
             ),
         );
