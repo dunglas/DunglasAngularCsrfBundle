@@ -46,15 +46,17 @@ Configure URLs where the cookie must be set and that must be protected against C
 # app/config/security.yml
 
 dunglas_angular_csrf:
-  # Collection of patterns where to set the cookie
-  cookie:
-      set_on:
-          - { path: ^/$ }
-          - { route: ^app_, methods: [GET, HEAD] }
-  # Collection of patterns to secure
-  secure:
-    - { path: ^/api, methods: [POST, PUT, PATCH, LINK] }
-    - { route: ^api_v2_ }
+    # Collection of patterns where to set the cookie
+    cookie:
+        set_on:
+            - { path: ^/$ }
+            - { route: ^app_, methods: [GET, HEAD] }
+            - { host: example.com }
+    # Collection of patterns to secure
+    secure:
+        - { path: ^/api, methods: [POST, PUT, PATCH, LINK] }
+        - { route: ^api_v2_ }
+        - { host: example.com, methods: [POST, PUT, PATCH, LINk] }
 ```
 
 Your Symfony/AngularJS app is now secured.
@@ -67,29 +69,29 @@ Your Symfony/AngularJS app is now secured.
 
 ```yaml
 dunglas_angular_csrf:
-  token:
-      # The CSRF token id
-      id: angular
-  header:
-      # The name of the HTTP header to check (default to the AngularJS default)
-      name: X-XSRF-TOKEN
-  cookie:
-      # The name of the cookie to set (default to the AngularJS default)
-      name: XSRF-TOKEN
-      # Expiration time of the cookie
-      expire: 0
-      # Path of the cookie
-      path: /
-      # Domain of the cookie
-      domain: ~
-      # If true, set the cookie only on HTTPS connection
-      secure: false
-      # Patterns of URLs to set the cookie
-      set_on:
-          - { path: "^/url-pattern", route: "^route_name_pattern$", methods: [GET, POST] }
-  # Patterns of URLs to check for a valid CSRF token
-  secure:
-      - { path: "^/url-pattern", route: "^route_name_pattern$", methods: [GET, POST] }
+    token:
+        # The CSRF token id
+        id: angular
+    header:
+        # The name of the HTTP header to check (default to the AngularJS default)
+        name: X-XSRF-TOKEN
+    cookie:
+        # The name of the cookie to set (default to the AngularJS default)
+        name: XSRF-TOKEN
+        # Expiration time of the cookie
+        expire: 0
+        # Path of the cookie
+        path: /
+        # Domain of the cookie
+        domain: ~
+        # If true, set the cookie only on HTTPS connection
+        secure: false
+        # Patterns of URLs to set the cookie
+        set_on:
+            - { path: "^/url-pattern", route: "^route_name_pattern$", host: "example.com", methods: [GET, POST] }
+    # Patterns of URLs to check for a valid CSRF token
+    secure:
+        - { path: "^/url-pattern", route: "^route_name_pattern$", host: "example.com", methods: [GET, POST] }
 ```
 
 ## Integration with Symfony2 Form component
