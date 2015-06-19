@@ -1,7 +1,7 @@
 # DunglasAngularCsrfBundle
 
 This [API Platform](http://api-platform.com) and [Symfony 2](http://symfony.com) bundle provides automatic [Cross Site Request Forgery](http://en.wikipedia.org/wiki/Cross-site_request_forgery) (CSRF or XSRF) protection for client-side [AngularJS](http://angularjs.org/) applications.
-It can also be used to secure apps using jQuery or raw JavaScript issuing [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest).
+It can also be used to secure any app using jQuery or raw JavaScript issuing [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest).
 
 [![Build Status](https://travis-ci.org/dunglas/DunglasAngularCsrfBundle.png?branch=master)](https://travis-ci.org/dunglas/DunglasAngularCsrfBundle)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/4a1e438f-038e-4cd7-ab6e-8849c4586a08/mini.png)](https://insight.sensiolabs.com/projects/4a1e438f-038e-4cd7-ab6e-8849c4586a08)
@@ -94,12 +94,10 @@ dunglas_angular_csrf:
         - { path: "^/url-pattern", route: "^route_name_pattern$", host: "example.com", methods: [GET, POST] }
 ```
 
-## Integration with Symfony2 Form component
+## Integration with Symfony2 form component
 
-If You are using Symfony2 Form component along with DunglasAngularCsrfBundle, there are some basic informations:
-Whenever Your action was under the secured by CSRF bundle route, the form created in that action will be set with default option of disabled csrf. In that case, the DunglasAngularCsrfBundle will only validate the token send by header and ommit the token from the form. 
+When using the Symfony Form Component together with DunglasAngularCsrfBundle, the bundle will automatically disable the built-in form CSRF protection: the CSRF token stored in the header will be validated by the bundle and no form token will be set.
 
 ## Credits
 
 This bundle has been written by [Kévin Dunglas](http://dunglas.fr).
-
