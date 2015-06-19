@@ -3,34 +3,34 @@
     "type": "symfony-bundle",
     "description": "CSRF protection when using AngularJS with Symfony2",
     "keywords": ["csrf", "xsrf", "security", "angularJS"],
-    "homepage": "http://dunglas.fr",
+    "homepage": "http://api-platform.com",
     "license": "MIT",
     "authors": [
         {
             "name": "Kévin Dunglas",
-            "email": "dunglas@gmail.com"
+            "email": "dunglas@gmail.com",
+            "homepage": "http://dunglas.fr"
         }
     ],
     "require": {
         "php": ">=5.3.3",
-        "symfony/dependency-injection": "~2.4",
-        "symfony/config": "~2.4",
-        "symfony/http-foundation": "~2.4",
-        "symfony/http-kernel": "~2.4",
-        "symfony/security-csrf": "~2.4"
+        "symfony/dependency-injection": "~2.4|~3.0",
+        "symfony/config": "~2.4|~3.0",
+        "symfony/http-foundation": "~2.4|~3.0",
+        "symfony/http-kernel": "~2.4|~3.0",
+        "symfony/security-csrf": "~2.4|~3.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "2.0.*@dev",
+        "phpspec/phpspec": "~2.0",
         "behat/behat": "~3.0",
         "symfony/form": "~2.4",
         "symfony/validator": "~2.4"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Dunglas\\AngularCsrfBundle": ""
         }
     },
-    "target-dir": "Dunglas/AngularCsrfBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"

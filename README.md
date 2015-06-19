@@ -5,6 +5,8 @@ It can also be used to secure any app using jQuery or raw JavaScript issuing [XM
 
 [![Build Status](https://travis-ci.org/dunglas/DunglasAngularCsrfBundle.png?branch=master)](https://travis-ci.org/dunglas/DunglasAngularCsrfBundle)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/4a1e438f-038e-4cd7-ab6e-8849c4586a08/mini.png)](https://insight.sensiolabs.com/projects/4a1e438f-038e-4cd7-ab6e-8849c4586a08)
+[![Dependency Status](https://www.versioneye.com/user/projects/5583d39036386100150002dd/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5583d39036386100150002dd)
+[![HHVM Status](http://hhvm.h4cc.de/badge/dunglas/angular-csrf-bundle.svg)](http://hhvm.h4cc.de/package/dunglas/angular-csrf-bundle)
 
 ## How it works
 
