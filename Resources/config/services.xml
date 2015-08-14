@@ -26,7 +26,7 @@
             <argument>%dunglas_angular_csrf.secure%</argument>
             <argument>%dunglas_angular_csrf.header.name%</argument>
 
-            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="12" />
         </service>
 
         <service id="dunglas_angular_csrf.form.extension.disable_csrf" class="%dunglas_angular_csrf.form.extension.disable_csrf.class%">
