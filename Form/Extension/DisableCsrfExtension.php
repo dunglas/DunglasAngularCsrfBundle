@@ -13,7 +13,7 @@ use Dunglas\AngularCsrfBundle\Csrf\AngularCsrfTokenManager;
 use Dunglas\AngularCsrfBundle\Routing\RouteMatcherInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Form extension that disables the given forms' CSRF token validation
@@ -70,7 +70,7 @@ class DisableCsrfExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $request = $this->requestStack->getCurrentRequest();
         if (null === $request) {
