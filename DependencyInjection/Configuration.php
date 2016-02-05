@@ -46,7 +46,7 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('name')->cannotBeEmpty()->defaultValue('XSRF-TOKEN')->end()
-                        ->integerNode('expire')->cannotBeEmpty()->defaultValue(0)->end()
+                        ->integerNode('expire')->defaultValue(0)->end()
                         ->scalarNode('path')->cannotBeEmpty()->defaultValue('/')->end()
                         ->scalarNode('domain')->cannotBeEmpty()->defaultValue(null)->end()
                         ->booleanNode('secure')->defaultFalse()->end()
