@@ -11,16 +11,28 @@ php:
   - 5.4
   - 5.5
   - 5.6
-  - nightly
+  - 7.0
   - hhvm
 
 matrix:
-    allow_failures:
-        - php: nightly
     fast_finish: true
+    include:
+        - php: 7.0
+          env: SYMFONY_VERSION=2.7.*
+        - php: 7.0
+          env: SYMFONY_VERSION=2.8.*
+        - php: 7.0
+          env: SYMFONY_VERSION=3.0.*
 
-before_script:
-  - composer install
+    allow_failures:
+        - env: SYMFONY_VERSION=3.0.*
+
+before_install:
+    - composer self-update
+    - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
+
+install:
+    - composer update --no-interaction --prefer-dist
 
 script:
     - vendor/bin/phpspec run
