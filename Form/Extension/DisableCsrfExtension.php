@@ -12,7 +12,6 @@ namespace Dunglas\AngularCsrfBundle\Form\Extension;
 use Dunglas\AngularCsrfBundle\Csrf\AngularCsrfTokenManager;
 use Dunglas\AngularCsrfBundle\Routing\RouteMatcherInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
