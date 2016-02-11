@@ -14,8 +14,8 @@ use Dunglas\AngularCsrfBundle\Features\Context\Fixtures\TestBundle\TestBundle;
 use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\TwigBundle\TwigBundle;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpKernel\Kernel;
 
 /**
@@ -46,13 +46,13 @@ class TestKernel extends Kernel
 
     public function registerBundles()
     {
-        return [
+        return array(
             new FrameworkBundle(),
             new SensioFrameworkExtraBundle(),
             new TestBundle(),
             new DunglasAngularCsrfBundle(),
             new TwigBundle(),
-        ];
+        );
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader)

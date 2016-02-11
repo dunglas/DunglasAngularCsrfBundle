@@ -11,8 +11,8 @@ namespace spec\Dunglas\AngularCsrfBundle\Csrf;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 /**
  * @author Kévin Dunglas <dunglas@gmail.com>

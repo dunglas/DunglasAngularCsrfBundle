@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 class RouteMatcher implements RouteMatcherInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function match(Request $request, array $routes)
     {

@@ -9,8 +9,8 @@
 
 namespace Dunglas\AngularCsrfBundle\DependencyInjection\CompilerPass;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 /**
  * Removes csrf listeners when token manager isn't loaded.
