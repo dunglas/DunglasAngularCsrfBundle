@@ -36,7 +36,7 @@
             <argument>%dunglas_angular_csrf.secure%</argument>
             <argument>%dunglas_angular_csrf.header.name%</argument>
 
-            <tag name="form.type_extension" alias="form" />
+            <tag name="form.type_extension" alias="form" extended-type="Symfony\Component\Form\Extension\Core\Type\FormType" />
         </service>
 
         <service id="dunglas_angular_csrf.cookie_listener" class="%dunglas_angular_csrf.cookie_listener.class%">
