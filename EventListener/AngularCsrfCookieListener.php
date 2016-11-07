@@ -98,7 +98,7 @@ class AngularCsrfCookieListener
         $event->getResponse()->headers->setCookie(new Cookie(
             $this->cookieName,
             $this->angularCsrfTokenManager->getToken()->getValue(),
-            time() + $this->cookieExpire,
+            0 === $this->cookieExpire ? $this->cookieExpire : time() + $this->cookieExpire,
             $this->cookiePath,
             $this->cookieDomain,
             $this->cookieSecure,
