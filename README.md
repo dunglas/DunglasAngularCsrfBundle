@@ -1,13 +1,13 @@
 # DunglasAngularCsrfBundle
 
-This [API Platform](http://api-platform.com) and [Symfony 2](http://symfony.com) bundle provides automatic [Cross Site Request Forgery](http://en.wikipedia.org/wiki/Cross-site_request_forgery) (CSRF or XSRF) protection for client-side [AngularJS](http://angularjs.org/) applications.
-It can also be used to secure any app using jQuery or raw JavaScript issuing [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest).
+This [API Platform](http://api-platform.com) and [Symfony](http://symfony.com) bundle provides automatic [Cross Site Request Forgery](http://en.wikipedia.org/wiki/Cross-site_request_forgery) (CSRF or XSRF) protection for client-side [AngularJS](http://angularjs.org/) applications.
+It can also be used to secure any app using [React](https://facebook.github.io/react/), [jQuery](https://jquery.com/) or raw JavaScript issuing [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) or using [the Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 
 [![Build Status](https://travis-ci.org/dunglas/DunglasAngularCsrfBundle.png?branch=master)](https://travis-ci.org/dunglas/DunglasAngularCsrfBundle)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/4a1e438f-038e-4cd7-ab6e-8849c4586a08/mini.png)](https://insight.sensiolabs.com/projects/4a1e438f-038e-4cd7-ab6e-8849c4586a08)
 [![Dependency Status](https://www.versioneye.com/user/projects/5583d39036386100150002dd/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5583d39036386100150002dd)
 [![HHVM Status](http://hhvm.h4cc.de/badge/dunglas/angular-csrf-bundle.svg)](http://hhvm.h4cc.de/package/dunglas/angular-csrf-bundle)
-[![StyleCI](https://styleci.io/repos/15552938/shield)](https://styleci.io/repos/15552938)
+[![StyleCI](https://styleci.io/repos/15552938/shield?branch=master)](https://styleci.io/repos/15552938)
 
 ## How it works
 
@@ -97,7 +97,7 @@ dunglas_angular_csrf:
         - { path: "^/url-pattern", route: "^route_name_pattern$", host: "example.com", methods: [GET, POST] }
 ```
 
-## Integration with Symfony2 form component
+## Integration with the Symfony Form component
 
 When using the Symfony Form Component together with DunglasAngularCsrfBundle, the bundle will automatically disable the built-in form CSRF protection: the CSRF token stored in the header will be validated by the bundle and no form token will be set.
 
