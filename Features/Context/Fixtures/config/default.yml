@@ -3,23 +3,12 @@ framework:
     test: ~
     session:
         storage_id: session.storage.mock_file
-    form:            true
+    form: true
     csrf_protection: true
-    profiler:        { only_exceptions: false }
-
-    validation:
-        enabled: true
-        enable_annotations: true
+    profiler: { only_exceptions: false }
+    validation: { enabled: true }
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
-
-    templating:
-        engines: [twig, php]
-
-twig:
-    exception_controller:  twig.controller.exception:showAction
-    debug:            %kernel.debug%
-    strict_variables: %kernel.debug%
 
 dunglas_angular_csrf:
     header:

@@ -21,11 +21,13 @@ class CsrfCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-        if (false === $container->hasDefinition('security.csrf.token_manager')) {
-            $container->removeDefinition('dunglas_angular_csrf.validation_listener');
-            $container->removeDefinition('dunglas_angular_csrf.form.extension.disable_csrf');
-            $container->removeDefinition('dunglas_angular_csrf.cookie_listener');
-            $container->removeDefinition('dunglas_angular_csrf.token_manager');
+        if ($container->hasDefinition('security.csrf.token_manager')) {
+            return;
         }
+
+        $container->removeDefinition('dunglas_angular_csrf.validation_listener');
+        $container->removeDefinition('dunglas_angular_csrf.form.extension.disable_csrf');
+        $container->removeDefinition('dunglas_angular_csrf.cookie_listener');
+        $container->removeDefinition('dunglas_angular_csrf.token_manager');
     }
 }
