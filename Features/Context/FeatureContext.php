@@ -7,7 +7,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Dunglas\AngularCsrfBundle\features\Context;
+namespace Dunglas\AngularCsrfBundle\Features\Context;
 
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Dunglas\AngularCsrfBundle\Features\Context\Fixtures\TestKernel;

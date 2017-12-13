@@ -53,10 +53,12 @@ class DunglasAngularCsrfExtensionSpec extends ObjectBehavior
 
         if (method_exists('Symfony\Component\DependencyInjection\ContainerBuilder', 'fileExists')) {
             $container->fileExists(Argument::type('string'))->willReturn(true);
+        } else {
+            $container->addResource(Argument::type('Symfony\Component\Config\Resource\FileResource'))->shouldBeCalled();
         }
+
         $container->getParameterBag()->willReturn($parameterBag)->shouldBeCalled();
         $container->hasExtension('http://symfony.com/schema/dic/services')->willReturn(false)->shouldBeCalled();
-        $container->addResource(Argument::type('Symfony\Component\Config\Resource\FileResource'));
         $container->setParameter('dunglas_angular_csrf.token.id', $configs['dunglas_angular_csrf']['token']['id'])->shouldBeCalled();
         $container->setParameter('dunglas_angular_csrf.cookie.name', $configs['dunglas_angular_csrf']['cookie']['name'])->shouldBeCalled();
         $container->setParameter('dunglas_angular_csrf.cookie.expire', $configs['dunglas_angular_csrf']['cookie']['expire'])->shouldBeCalled();

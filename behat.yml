@@ -2,4 +2,4 @@ default:
     suites:
         default:
             contexts:
-                - Dunglas\AngularCsrfBundle\features\Context\FeatureContext
+                - Dunglas\AngularCsrfBundle\Features\Context\FeatureContext

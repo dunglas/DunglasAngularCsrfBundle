@@ -1,26 +1,40 @@
-# DunglasAngularCsrfBundle
+# JavaScript CSRF Protection Bundle
 
-This [API Platform](http://api-platform.com) and [Symfony](http://symfony.com) bundle provides automatic [Cross Site Request Forgery](http://en.wikipedia.org/wiki/Cross-site_request_forgery) (CSRF or XSRF) protection for client-side [AngularJS](http://angularjs.org/) applications.
-It can also be used to secure any app using [React](https://facebook.github.io/react/), [jQuery](https://jquery.com/) or raw JavaScript issuing [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) or using [the Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+This [API Platform](http://api-platform.com) and [Symfony](http://symfony.com) bundle provides automatic
+[Cross Site Request Forgery](http://en.wikipedia.org/wiki/Cross-site_request_forgery) (CSRF or XSRF) protection for
+client-side applications.
+
+Despite the name, it works with any client-side technology including [Angular](https://angular.io/),
+[React](https://facebook.github.io/react/), [Vue.js](https://vuejs.org/) and [jQuery](https://jquery.com/).
+Actually, any JavaScript code issuing [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) or using [the Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) can leverage this bundle.
 
 [![Build Status](https://travis-ci.org/dunglas/DunglasAngularCsrfBundle.png?branch=master)](https://travis-ci.org/dunglas/DunglasAngularCsrfBundle)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/4a1e438f-038e-4cd7-ab6e-8849c4586a08/mini.png)](https://insight.sensiolabs.com/projects/4a1e438f-038e-4cd7-ab6e-8849c4586a08)
 [![Dependency Status](https://www.versioneye.com/user/projects/5583d39036386100150002dd/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5583d39036386100150002dd)
-[![HHVM Status](http://hhvm.h4cc.de/badge/dunglas/angular-csrf-bundle.svg)](http://hhvm.h4cc.de/package/dunglas/angular-csrf-bundle)
 [![StyleCI](https://styleci.io/repos/15552938/shield?branch=master)](https://styleci.io/repos/15552938)
 
-## How it works
+## How it Works
 
-AngularJS' `ng.$http` service has [a built-in CSRF protection system](http://docs.angularjs.org/api/ng.$http#description_security-considerations_cross-site-request-forgery-protection).
-To enable it, the server-side application (the Symfony app) must set a cookie containing a XSRF token on the first HTTP request.
-Subsequent XHR requests made by AngularJS will provide a special HTTP header containing the value of the cookie.
+Thanks to this bundle, the server-side application (the Symfony app) will automatically set a cookie named `XSRF-Token`
+containing a unique token during the first HTTP response sent to the browser.
+Subsequent asynchronous requests made by the JavaScript app with `xhr` or `fetch` send back the value of the cookie in a
+special HTTP header named `X-XSRF-Token`.
 
-To prevent CSRF attacks, the server-side application must check that the header's value match the cookie's value.
+To prevent CSRF attacks, the bundle will check that the header's value match the cookie's value. This way, it will be
+able to detect and block CSRF attacks.
 
-This bundle provides a [Symfony's Event Listener](http://symfony.com/doc/current/cookbook/service_container/event_listener.html) that set the cookie and another one that checks the HTTP header to block CSRF attacks.
+AngularJS (v1)'s `ng.$http` service has
+[a built-in support for this CSRF protection system](http://docs.angularjs.org/api/ng.$http#description_security-considerations_cross-site-request-forgery-protection).
+If you use another framework or HTTP client (such as [Axios](https://github.com/axios/axios)), you just need to read the
+cookie value and add the HTTP header containing it by yourself.
+
+This bundle provides a [Symfony's Event Listener](http://symfony.com/doc/current/cookbook/service_container/event_listener.html)
+that set the cookie and another one that checks the HTTP header to block CSRF attacks.
+
 Thanks to DunglasAngularCsrfBundle, you get CSRF security without modifying your code base.
 
-This bundle works fine with [FOSRestBundle](https://github.com/FriendsOfSymfony/FOSRestBundle).
+This bundle works fine with both [API Platform](https://api-platform.com) and
+[FOSRestBundle](https://github.com/FriendsOfSymfony/FOSRestBundle).
 
 ## Installation
 
@@ -28,7 +42,9 @@ Use [Composer](http://getcomposer.org/) to install this bundle:
 
     composer require dunglas/angular-csrf-bundle
 
-Add the bundle in your application kernel:
+If you use Symfony Flex, you're done.
+
+Otherwise add the bundle in your application kernel:
 
 ```php
 // app/AppKernel.php
@@ -47,7 +63,6 @@ Configure URLs where the cookie must be set and that must be protected against C
 
 ```yaml
 # app/config/security.yml
-
 dunglas_angular_csrf:
     # Collection of patterns where to set the cookie
     cookie:
@@ -59,16 +74,17 @@ dunglas_angular_csrf:
     secure:
         - { path: ^/api, methods: [POST, PUT, PATCH, LINK] }
         - { route: ^api_v2_ }
-        - { host: example.com, methods: [POST, PUT, PATCH, LINk] }
+        - { host: example.com, methods: [POST, PUT, PATCH, DELETE, LINK] }
 ```
 
-Your Symfony/AngularJS app is now secured.
+Your app is now secured.
 
 ## Examples
 
-* [DunglasTodoMVCBundle](https://github.com/dunglas/DunglasTodoMVCBundle): an implementation of the TodoMVC app using Symfony, Backbone.js and Chaplin.js
+* [DunglasTodoMVCBundle](https://github.com/dunglas/DunglasTodoMVCBundle): an implementation of the TodoMVC app using Symfony,
+Backbone.js and Chaplin.js
 
-## Full configuration
+## Full Configuration
 
 ```yaml
 dunglas_angular_csrf:
@@ -97,10 +113,12 @@ dunglas_angular_csrf:
         - { path: "^/url-pattern", route: "^route_name_pattern$", host: "example.com", methods: [GET, POST] }
 ```
 
-## Integration with the Symfony Form component
+## Integration with the Symfony Form Component
 
-When using the Symfony Form Component together with DunglasAngularCsrfBundle, the bundle will automatically disable the built-in form CSRF protection: the CSRF token stored in the header will be validated by the bundle and no form token will be set.
+When using the Symfony Form Component together with DunglasAngularCsrfBundle, the bundle will automatically disable the
+built-in form CSRF protection: the CSRF token stored in the header will be validated by the bundle and no form token will
+be set.
 
 ## Credits
 
-This bundle has been written by [Kévin Dunglas](http://dunglas.fr).
+This bundle has been created by [Kévin Dunglas](http://dunglas.fr).
