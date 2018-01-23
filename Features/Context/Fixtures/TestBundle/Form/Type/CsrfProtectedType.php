@@ -26,7 +26,7 @@ class CsrfProtectedType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text', array('required' => false));
+            ->add('name', null, array('required' => false));
     }
 
     /**

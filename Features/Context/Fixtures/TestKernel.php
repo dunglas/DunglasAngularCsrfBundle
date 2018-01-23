@@ -48,10 +48,9 @@ class TestKernel extends Kernel
     {
         return array(
             new FrameworkBundle(),
-            new SensioFrameworkExtraBundle(),
+            new TwigBundle(),
             new TestBundle(),
             new DunglasAngularCsrfBundle(),
-            new TwigBundle(),
         );
     }
 

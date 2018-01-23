@@ -28,7 +28,7 @@ class TestController extends Controller
 
     public function csrfProtectedAction(Request $request)
     {
-        $form = $this->createForm(new CsrfProtectedType());
+        $form = $this->createForm(CsrfProtectedType::class);
         $form->submit($request->request->all());
 
         if ($form->isValid()) {
