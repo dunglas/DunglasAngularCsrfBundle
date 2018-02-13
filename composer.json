@@ -2,31 +2,32 @@
     "name": "dunglas/angular-csrf-bundle",
     "type": "symfony-bundle",
     "description": "CSRF protection when using AngularJS with Symfony2",
-    "keywords": ["csrf", "xsrf", "security", "angularJS"],
-    "homepage": "http://api-platform.com",
+    "keywords": ["csrf", "xsrf", "security", "angular", "react", "vue.js"],
+    "homepage": "https://api-platform.com",
     "license": "MIT",
     "authors": [
         {
             "name": "Kévin Dunglas",
             "email": "dunglas@gmail.com",
-            "homepage": "http://dunglas.fr"
+            "homepage": "https://dunglas.fr"
         }
     ],
     "require": {
-        "php": ">=5.3.3",
-        "symfony/config": "^2.7 || ^3.0",
-        "symfony/dependency-injection": "^2.7 || ^3.0",
-        "symfony/http-foundation": "^2.7 || ^3.0",
-        "symfony/http-kernel": "^2.7 || ^3.0",
-        "symfony/security-csrf": "^2.7 || ^3.0"
+        "php": ">=7.0",
+        "symfony/config": "^3.4 || ^4.0",
+        "symfony/dependency-injection": "^3.4 || ^4.0",
+        "symfony/http-foundation": "^3.4 || ^4.0",
+        "symfony/http-kernel": "^3.4 || ^4.0",
+        "symfony/security-csrf": "^3.4 || ^4.0"
     },
     "require-dev": {
         "behat/behat": "^3.0",
-        "phpspec/phpspec": "^2.0",
-        "symfony/form": "^2.7 || ^3.0",
-        "symfony/framework-bundle": "^2.7 || ^3.0",
-        "symfony/validator": "^2.7 || ^3.0",
-        "symfony/twig-bundle": "^2.7 || ^3.0"
+        "phpspec/phpspec": "^4.0",
+        "sebastian/comparator": "^1.2.4 || ^2.0",
+        "symfony/form": "^3.4 || ^4.0",
+        "symfony/framework-bundle": "^3.4 || ^4.0",
+        "symfony/validator": "^3.4 || ^4.0",
+        "symfony/twig-bundle": "^3.4 || ^4.0"
     },
     "autoload": {
         "psr-4": {
@@ -35,8 +36,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.1-dev"
         }
     }
 }
-

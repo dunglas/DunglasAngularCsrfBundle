@@ -1,33 +1,38 @@
 language: php
-
 sudo: false
-
 cache:
   directories:
     - $HOME/.composer/cache
 
 php:
-  - 5.4
-  - 5.5
-  - 5.6
   - 7.0
   - 7.1
-  - hhvm
+  - 7.2
 
 matrix:
     fast_finish: true
     include:
-        - php: 7.1
-          env: SYMFONY_VERSION=2.7.*
-        - php: 7.1
-          env: SYMFONY_VERSION=2.8.*
+          # Minimum supported dependencies with the latest and oldest PHP version
+        - php: 7.2
+          env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest"
+        - php: 7.0
+          env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest"
+
+          # Test LTS versions. This makes sure we do not use Symfony packages with version greater
+          # than 3. Read more at https://github.com/symfony/lts
+        - php: 7.2
+          env: DEPENDENCIES="symfony/lts:^3"
 
 before_install:
-    - if [ "$SYMFONY_VERSION" != "" ]; then composer require "symfony/symfony:${SYMFONY_VERSION}" --no-update; fi;
+    - phpenv config-rm xdebug.ini || true
+    - if ! [ -v "$DEPENDENCIES" ]; then composer require --no-update ${DEPENDENCIES}; fi;
 
 install:
-    - composer update --no-interaction --prefer-dist
+    # To be removed when this issue will be resolved: https://github.com/composer/composer/issues/5355
+    - if [[ "$COMPOSER_FLAGS" == *"--prefer-lowest"* ]]; then composer update --prefer-dist --no-interaction --prefer-stable --quiet; fi
+    - composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
 
 script:
+    - composer validate --strict --no-check-lock
     - vendor/bin/phpspec run
     - vendor/bin/behat --format=progress

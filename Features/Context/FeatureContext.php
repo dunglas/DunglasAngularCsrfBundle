@@ -40,7 +40,7 @@ class FeatureContext implements SnippetAcceptingContext
         $this->app->boot();
         $request = Request::create($path, 'POST');
         $request->headers->add(array(
-            'X-XSRF-TOKEN' => $this->app->getContainer()->get('dunglas_angular_csrf.token_manager')->getToken()->getValue(),
+            'X-XSRF-TOKEN' => $this->app->getContainer()->get('test.dunglas_angular_csrf.token_manager')->getToken()->getValue(),
         ));
         $this->lastResponse = $this->app->handle($request);
     }
