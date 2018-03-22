@@ -116,8 +116,11 @@ dunglas_angular_csrf:
 ## Integration with the Symfony Form Component
 
 When using the Symfony Form Component together with DunglasAngularCsrfBundle, the bundle will automatically disable the
-built-in form CSRF protection: the CSRF token stored in the header will be validated by the bundle and no form token will
-be set.
+built-in form CSRF protection only if the CSRF token provided by the header is valid. 
+
+If no CSRF header is found or if the token is invalid, the form CSRF protection will not be disabled by the bundle.
+
+If you want your form to be validated only by the form component system, make sure to remove its URL from the config.
 
 ## Credits
 
