@@ -19,6 +19,8 @@ dunglas_angular_csrf:
     secure:
         - { path: ^/resource, methods: [POST, PUT, PATCH, LINK] }
         - { path: ^/protected-resource, methods: [POST, PUT, PATCH, LINK] }
+    exclude:
+        - { path: ^/protected-resource/excluded, methods: [POST, PUT, PATCH, LINK] }
 
 services:
     test.dunglas_angular_csrf.token_manager:

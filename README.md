@@ -75,6 +75,12 @@ dunglas_angular_csrf:
         - { path: ^/api, methods: [POST, PUT, PATCH, LINK] }
         - { route: ^api_v2_ }
         - { host: example.com, methods: [POST, PUT, PATCH, DELETE, LINK] }
+    # Collection of patterns to exclude
+    exclude:
+        - { path: ^/api/exclude, methods: [POST, PUT, PATCH, LINK] }
+        - { route: ^api_v2_exclude }
+        - { host: exclude-example.com, methods: [POST, PUT, PATCH, DELETE, LINK] }
+        
 ```
 
 Your app is now secured.
@@ -111,6 +117,9 @@ dunglas_angular_csrf:
     # Patterns of URLs to check for a valid CSRF token
     secure:
         - { path: "^/url-pattern", route: "^route_name_pattern$", host: "example.com", methods: [GET, POST] }
+    # Patterns to exclude from secure routes
+    exclude:
+        - { path: "^/url-pattern/exclude", route: "^route_name_pattern$", host: "example.com", methods: [GET, POST] }
 ```
 
 ## Integration with the Symfony Form Component

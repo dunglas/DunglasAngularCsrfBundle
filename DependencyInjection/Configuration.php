@@ -72,7 +72,17 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->end()
-            ->end();
+                ->arrayNode('exclude')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('path')->defaultFalse()->end()
+                            ->scalarNode('route')->defaultFalse()->end()
+                            ->scalarNode('host')->defaultFalse()->end()
+                            ->arrayNode('methods')->prototype('scalar')->end()->end()
+                        ->end()
+                        ->end()
+                    ->end()
+                ->end();
 
         return $treeBuilder;
     }

@@ -27,9 +27,11 @@ class AngularCsrfValidationListenerSpec extends ObjectBehavior
     const INVALID_TOKEN = 'invalid';
 
     private $routes = array('^/secured');
+    private $excluded = array('^/secured/excluded');
     private $secureValidRequest;
     private $secureInvalidRequest;
     private $unsecureRequest;
+    private $excludedSecureRequest;
 
     public function let(
         AngularCsrfTokenManager $tokenManager,
@@ -37,6 +39,7 @@ class AngularCsrfValidationListenerSpec extends ObjectBehavior
         Request $secureValidRequest,
         Request $secureInvalidRequest,
         Request $unsecureRequest,
+        Request $excludedSecureRequest,
         HeaderBag $validHeaders,
         HeaderBag $invalidHeaders
     ) {
@@ -52,12 +55,24 @@ class AngularCsrfValidationListenerSpec extends ObjectBehavior
         $this->secureInvalidRequest->headers = $invalidHeaders;
 
         $this->unsecureRequest = $unsecureRequest;
+        $this->excludedSecureRequest = $excludedSecureRequest;
 
         $routeMatcher->match($this->secureValidRequest, $this->routes)->willReturn(true);
+        $routeMatcher->match($this->secureValidRequest, $this->excluded)->willReturn(false);
         $routeMatcher->match($this->secureInvalidRequest, $this->routes)->willReturn(true);
+        $routeMatcher->match($this->secureInvalidRequest, $this->excluded)->willReturn(false);
         $routeMatcher->match($this->unsecureRequest, $this->routes)->willReturn(false);
+        $routeMatcher->match($this->unsecureRequest, $this->excluded)->willReturn(false);
+        $routeMatcher->match($this->excludedSecureRequest, $this->routes)->willReturn(true);
+        $routeMatcher->match($this->excludedSecureRequest, $this->excluded)->willReturn(true);
 
-        $this->beConstructedWith($tokenManager, $routeMatcher, $this->routes, self::HEADER_NAME);
+        $this->beConstructedWith(
+            $tokenManager,
+            $routeMatcher,
+            $this->routes,
+            self::HEADER_NAME,
+            $this->excluded
+        );
     }
 
     public function it_is_initializable()
@@ -94,6 +109,14 @@ class AngularCsrfValidationListenerSpec extends ObjectBehavior
         $event->getRequestType()->willReturn(HttpKernelInterface::MASTER_REQUEST);
         $event->getRequest()->willReturn($this->unsecureRequest);
         $event->getResponse()->shouldNotBeCalled();
+
+        $this->onKernelRequest($event);
+    }
+
+    public function it_does_not_secure_when_it_is_excluded(GetResponseEvent $event)
+    {
+        $event->getRequestType()->willReturn(HttpKernelInterface::MASTER_REQUEST);
+        $event->getRequest()->willReturn($this->excludedSecureRequest);
 
         $this->onKernelRequest($event);
     }

@@ -37,4 +37,9 @@ class TestController extends Controller
 
         return new Response('Success', 400);
     }
+
+    public function csrfNonProtectedAction(Request $request)
+    {
+        return new Response('Success', 200);
+    }
 }

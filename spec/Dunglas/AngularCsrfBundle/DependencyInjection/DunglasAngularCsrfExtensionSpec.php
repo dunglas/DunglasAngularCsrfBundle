@@ -48,6 +48,9 @@ class DunglasAngularCsrfExtensionSpec extends ObjectBehavior
                     array('path' => '/bruay', 'route' => false, 'host' => false, 'methods' => array('HEAD', 'LINK')),
                     array('path' => false, 'route' => false, 'host' => 'example.com', 'methods' => array()),
                 ),
+                'exclude' => array(
+                    array('path' => '^/lille/excluded', 'route' => false, 'host' => false, 'methods' => array()),
+                ),
             ),
         );
 
@@ -68,6 +71,7 @@ class DunglasAngularCsrfExtensionSpec extends ObjectBehavior
         $container->setParameter('dunglas_angular_csrf.cookie.set_on', $configs['dunglas_angular_csrf']['cookie']['set_on'])->shouldBeCalled();
         $container->setParameter('dunglas_angular_csrf.header.name', $configs['dunglas_angular_csrf']['header']['name'])->shouldBeCalled();
         $container->setParameter('dunglas_angular_csrf.secure', $configs['dunglas_angular_csrf']['secure'])->shouldBeCalled();
+        $container->setParameter('dunglas_angular_csrf.exclude', $configs['dunglas_angular_csrf']['exclude'])->shouldBeCalled();
         $container->setDefinition('dunglas_angular_csrf.token_manager', Argument::type('Symfony\Component\DependencyInjection\Definition'))->shouldBeCalled();
         $container->setDefinition('dunglas_angular_csrf.route_matcher', Argument::type('Symfony\Component\DependencyInjection\Definition'))->shouldBeCalled();
         $container->setDefinition('dunglas_angular_csrf.validation_listener', Argument::type('Symfony\Component\DependencyInjection\Definition'))->shouldBeCalled();

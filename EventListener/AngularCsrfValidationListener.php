@@ -38,22 +38,29 @@ class AngularCsrfValidationListener
      * @var string
      */
     protected $headerName;
+    /**
+     * @var array
+     */
+    private $exclude;
 
     /**
      * @param AngularCsrfTokenManager $angularCsrfTokenManager
      * @param RouteMatcherInterface   $routeMatcher
      * @param array                   $routes
      * @param string                  $headerName
+     * @param array                   $exclude
      */
     public function __construct(
         AngularCsrfTokenManager $angularCsrfTokenManager,
         RouteMatcherInterface $routeMatcher,
         array $routes,
-        $headerName
+        $headerName,
+        array $exclude = array()
     ) {
         $this->angularCsrfTokenManager = $angularCsrfTokenManager;
         $this->routeMatcher = $routeMatcher;
         $this->routes = $routes;
+        $this->exclude = $exclude;
         $this->headerName = $headerName;
     }
 
@@ -68,6 +75,8 @@ class AngularCsrfValidationListener
     {
         if (
             HttpKernelInterface::MASTER_REQUEST !== $event->getRequestType()
+            ||
+            $this->routeMatcher->match($event->getRequest(), $this->exclude)
             ||
             !$this->routeMatcher->match($event->getRequest(), $this->routes)
         ) {

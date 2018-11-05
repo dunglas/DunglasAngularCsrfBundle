@@ -25,6 +25,7 @@
             <argument type="service" id="dunglas_angular_csrf.route_matcher" />
             <argument>%dunglas_angular_csrf.secure%</argument>
             <argument>%dunglas_angular_csrf.header.name%</argument>
+            <argument>%dunglas_angular_csrf.exclude%</argument>
 
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="12" />
         </service>
