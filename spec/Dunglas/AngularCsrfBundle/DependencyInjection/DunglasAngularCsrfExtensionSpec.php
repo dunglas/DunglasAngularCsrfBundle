@@ -60,6 +60,11 @@ class DunglasAngularCsrfExtensionSpec extends ObjectBehavior
             $container->addResource(Argument::type('Symfony\Component\Config\Resource\FileResource'))->shouldBeCalled();
         }
 
+        if (method_exists('Symfony\Component\DependencyInjection\ContainerBuilder', 'addRemovedBindingIds')) {
+            // Added in Symfony v4.2.6 and v3.4.25
+            $container->addRemovedBindingIds(Argument::type('string'))->willReturn(null);
+        }
+
         $container->getParameterBag()->willReturn($parameterBag)->shouldBeCalled();
         $container->hasExtension('http://symfony.com/schema/dic/services')->willReturn(false)->shouldBeCalled();
         $container->setParameter('dunglas_angular_csrf.token.id', $configs['dunglas_angular_csrf']['token']['id'])->shouldBeCalled();

@@ -79,7 +79,10 @@ class AngularCsrfCookieListenerSpec extends ObjectBehavior
         Response $response,
         ResponseHeaderBag $headers
     ) {
-        $headers->setCookie(Argument::type('Symfony\Component\HttpFoundation\Cookie'));
+        $headers->setCookie(Argument::allOf(
+            Argument::type('Symfony\Component\HttpFoundation\Cookie'),
+            Argument::which('getSameSite', 'lax')
+        ))->shouldBeCalled();
         $response->headers = $headers;
 
         $event->getRequestType()->willReturn(HttpKernelInterface::MASTER_REQUEST)->shouldBeCalled();

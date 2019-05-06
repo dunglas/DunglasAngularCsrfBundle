@@ -10,7 +10,7 @@ init:
 
 install:
   - ps: Set-Service wuauserv -StartupType Manual
-  - cinst -y php
+  - cinst -y php --version 7.2.17
   - cd c:\tools\php72
   - copy php.ini-production php.ini /Y
   - echo date.timezone="UTC" >> php.ini
