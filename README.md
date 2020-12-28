@@ -1,5 +1,7 @@
 # JavaScript CSRF Protection Bundle
 
+**Archived!** Now that all modern browsers implement `SameSite` cookies and the `Origin` HTTP header, this bundle is - in most cases - not necessary anymore. **[Learn how to protect your Symfony APIs from CSRF attacks](https://symfonycasts.com/screencast/reactjs/csrf-protection?cid=apip#do-apis-need-protection).** If you need to maintain old applications, take a look to [DneustadtCsrfCookieBundle](https://github.com/dneustadt/DneustadtCsrfCookieBundle).
+
 This [API Platform](http://api-platform.com) and [Symfony](http://symfony.com) bundle provides automatic
 [Cross Site Request Forgery](http://en.wikipedia.org/wiki/Cross-site_request_forgery) (CSRF or XSRF) protection for
 client-side applications.
